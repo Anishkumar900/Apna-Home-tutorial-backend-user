@@ -17,6 +17,7 @@ public class EnquiryController {
 
     @PostMapping("/enquiry")
     public ResponseEntity<ApiResponse> enquiry(@RequestBody Enquiry enquiry){
+        System.out.println(enquiry);
         return new ResponseEntity<>(enquiryService.createEnquiry(enquiry), HttpStatus.CREATED);
     }
 }
