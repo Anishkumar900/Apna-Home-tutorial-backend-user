@@ -1,7 +1,7 @@
 package com.user.controller;
 
 import com.user.model.Enquiry;
-import com.user.response.ApiResponse;
+import com.user.model.StudentParentEnquiry;
 import com.user.service.EnquiryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,7 +16,12 @@ public class EnquiryController {
     private final EnquiryService enquiryService;
 
     @PostMapping("/enquiry")
-    public ResponseEntity<ApiResponse> enquiry(@RequestBody Enquiry enquiry){
+    public ResponseEntity<String> enquiry(@RequestBody Enquiry enquiry){
         return new ResponseEntity<>(enquiryService.createEnquiry(enquiry), HttpStatus.CREATED);
+    }
+
+    @PostMapping("/student-query")
+    public ResponseEntity<String> studentEnquiry(@RequestBody StudentParentEnquiry studentParentEnquiry){
+        return new ResponseEntity<>(enquiryService.createStudentEnquiry(studentParentEnquiry),HttpStatus.CREATED);
     }
 }

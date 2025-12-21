@@ -34,7 +34,7 @@ public class AppConfig {
                         .requestMatchers("/user/api/v1/**").permitAll()
                         .requestMatchers("/user/api/auth/v1/**").authenticated()
                                 .requestMatchers("/user/test/**").permitAll()
-//                                .anyRequest().permitAll()
+                                .anyRequest().permitAll()
                 )
                 .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .exceptionHandling(exception -> exception
@@ -61,9 +61,5 @@ public class AppConfig {
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder(){return new BCryptPasswordEncoder();}
 
-//    @Bean
-//    @LoadBalanced
-//    public RestTemplate restTemplate(){
-//        return new RestTemplate();
-//    }
+
 }

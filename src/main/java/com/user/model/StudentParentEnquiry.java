@@ -12,22 +12,18 @@ import java.time.LocalDateTime;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
 @Setter
-public class Enquiry {
+@Getter
+public class StudentParentEnquiry {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String name;
     private String phoneNumber;
-    private String studentClass;
-    private String experience;
-    private String location;
     private String email;
-    private String query;
+    private String studentQuery;
     @Enumerated(EnumType.STRING)
     private VerifyEnquiry verifyEnquiry;
     private LocalDateTime localDateTime;
-
 }

@@ -1,6 +1,7 @@
 package com.user.model;
 
-import com.user.dom.VerifyEnquiry;
+import com.user.dom.ProfileVerification;
+import com.user.dom.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,20 +15,30 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Enquiry {
+public class Registration {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String name;
+    @Enumerated(EnumType.STRING)
+    private Role role;
     private String phoneNumber;
     private String studentClass;
     private String experience;
-    private String location;
     private String email;
-    private String query;
+    private String password;
+    private String location;
+    private String otp;
+    private LocalDateTime expireOTPTime;
     @Enumerated(EnumType.STRING)
-    private VerifyEnquiry verifyEnquiry;
+    private ProfileVerification profileVerification;
     private LocalDateTime localDateTime;
+
+
+
+//    private int failedLoginAttempts;
+//    private boolean accountLocked;
+//    private LocalDateTime lockTime;
 
 }
