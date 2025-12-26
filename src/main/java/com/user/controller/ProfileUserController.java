@@ -1,22 +1,29 @@
 package com.user.controller;
 
+import com.user.model.FeedbackProfile;
 import com.user.model.Registration;
-import jakarta.ws.rs.HeaderParam;
+import com.user.service.ProfileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user/api/auth/v1")
 @RequiredArgsConstructor
 public class ProfileUserController {
 
-//    @GetMapping("/login")
-//    public ResponseEntity<Registration> tokenVerify(@HeaderParam("token") token){
-//
-//    }
+    private final ProfileService profileService;
+
+    @GetMapping("/jwt-verify")
+    public ResponseEntity<Registration> tokenVerify(@RequestHeader("Authorization") String token) {
+        return ResponseEntity.ok(profileService.getProfile(token));
+    }
+
+    @PostMapping("/feedback")
+    public ResponseEntity<String> feedback(@RequestHeader("Authorization") String token, @RequestBody FeedbackProfile feedbackProfile){
+        return ResponseEntity.ok(profileService.addFeedback(feedbackProfile));
+    }
+
 
 
 }

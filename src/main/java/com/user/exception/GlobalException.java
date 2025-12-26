@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.lang.IllegalArgumentException;
 import java.time.LocalDateTime;
 
 @RestControllerAdvice
@@ -44,5 +45,16 @@ public class GlobalException {
                 LocalDateTime.now()
         );
         return new ResponseEntity<>(result,HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<ExceptionResponse> handleIllegalArgumentException(IllegalArgumentException ex){
+        ExceptionResponse result=new ExceptionResponse(
+                ex.getMessage(),
+                HttpStatus.NON_AUTHORITATIVE_INFORMATION.value(),
+                "unAuthorized user!",
+                LocalDateTime.now()
+        );
+        return new ResponseEntity<>(result,HttpStatus.NON_AUTHORITATIVE_INFORMATION);
     }
 }
